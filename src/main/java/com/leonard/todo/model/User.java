@@ -1,16 +1,15 @@
 package com.leonard.todo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class User {
+@Table(name = "user")
+public class User implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Column(name = "username")
@@ -26,8 +25,17 @@ public class User {
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
-    public User(){
+    public User() {
+    }
 
+    public User(Integer id, String username, String password, String email, Integer city, Integer group, Timestamp timestamp) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.city = city;
+        this.group = group;
+        this.timestamp = timestamp;
     }
 
     public Integer getId() {
