@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -23,26 +25,29 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "cities_id")
-    private Integer city;
+    @ManyToOne
+    @JoinColumn(name = "cities_id")
+    private City city;
 
-    @Column(name = "groups_id")
-    private Integer group;
+    @ManyToOne
+    @JoinColumn(name = "groups_id")
+    private Group group;
 
     @Column(name = "create_time")
     private LocalDateTime localDateTime;
 
+    @ManyToMany
+    private Set<TodoList> todoLists = new HashSet<>();
+
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Integer city, Integer group, LocalDateTime localdatetime) {
+    public User(Integer id, String username, String password, String email, LocalDateTime localDateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.city = city;
-        this.group = group;
-        this.localDateTime = localdatetime;
+        this.localDateTime = localDateTime;
     }
 
     public Integer getId() {
@@ -77,19 +82,19 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Integer getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(Integer city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
-    public Integer getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(Integer group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
@@ -99,5 +104,13 @@ public class User implements Serializable {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public Set<TodoList> getTodoLists() {
+        return todoLists;
+    }
+
+    public void setTodoLists(Set<TodoList> todoLists) {
+        this.todoLists = todoLists;
     }
 }
