@@ -23,13 +23,13 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "city")
+    @Column(name = "cities_id")
     private Integer city;
 
-    @Column(name = "group")
+    @Column(name = "groups_id")
     private Integer group;
 
-    @Column(name = "timestamp")
+    @Column(name = "create_time")
     private LocalDateTime localDateTime;
 
     public User() {

@@ -15,17 +15,28 @@ public class Todo implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "completed")
+    @Column(name = "isCompleted")
     private Boolean completed;
 
+    @Column(name = "isInProgress")
+    private Boolean inProgress;
 
-    public Todo(Integer id, String content, Boolean completed) {
+    @Column(name = "isInTodo")
+    private Boolean inTodo;
+
+    @Column(name = "todo_list_id")
+    private Integer todoListId;
+
+    public Todo() {
+    }
+
+    public Todo(Integer id, String content, Boolean completed, Boolean inProgress, Boolean inTodo, Integer todoListId) {
         this.id = id;
         this.content = content;
         this.completed = completed;
-    }
-
-    public Todo() {
+        this.inProgress = inProgress;
+        this.inTodo = inTodo;
+        this.todoListId = todoListId;
     }
 
     public Integer getId() {
@@ -50,5 +61,29 @@ public class Todo implements Serializable {
 
     public void setCompleted(Boolean completed) {
         this.completed = completed;
+    }
+
+    public Boolean getInProgress() {
+        return inProgress;
+    }
+
+    public void setInProgress(Boolean inProgress) {
+        this.inProgress = inProgress;
+    }
+
+    public Boolean getInTodo() {
+        return inTodo;
+    }
+
+    public void setInTodo(Boolean inTodo) {
+        this.inTodo = inTodo;
+    }
+
+    public Integer getTodoListId() {
+        return todoListId;
+    }
+
+    public void setTodoListId(Integer todoListId) {
+        this.todoListId = todoListId;
     }
 }
