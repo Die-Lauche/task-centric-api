@@ -3,6 +3,7 @@ package com.leonard.todo.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user")
@@ -12,30 +13,36 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "city")
     private Integer city;
+
     @Column(name = "group")
     private Integer group;
+
     @Column(name = "timestamp")
-    private Timestamp timestamp;
+    private LocalDateTime localDateTime;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String email, Integer city, Integer group, Timestamp timestamp) {
+    public User(Integer id, String username, String password, String email, Integer city, Integer group, LocalDateTime localdatetime) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.city = city;
         this.group = group;
-        this.timestamp = timestamp;
+        this.localDateTime = localdatetime;
     }
 
     public Integer getId() {
@@ -86,11 +93,11 @@ public class User implements Serializable {
         this.group = group;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
