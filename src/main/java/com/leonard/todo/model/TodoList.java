@@ -17,6 +17,9 @@ public class TodoList implements Serializable {
     @Column(name = "title")
     private String name;
 
+    @OneToMany(mappedBy = "group")
+    private Set<Todo> todos = new HashSet<>();
+
     @ManyToMany
     @JoinTable(name = "user_has_todo_list",
             joinColumns = @JoinColumn(name = "user_id"),
