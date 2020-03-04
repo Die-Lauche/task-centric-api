@@ -24,20 +24,20 @@ public class Todo implements Serializable {
     @Column(name = "isInTodo")
     private Boolean inTodo;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "todo_list_id")
-    private Integer todoListId;
+    private TodoList todoList;
 
     public Todo() {
     }
 
-    public Todo(Integer id, String content, Boolean completed, Boolean inProgress, Boolean inTodo, Integer todoListId) {
+    public Todo(Integer id, String content, Boolean completed, Boolean inProgress, Boolean inTodo, TodoList todoList) {
         this.id = id;
         this.content = content;
         this.completed = completed;
         this.inProgress = inProgress;
         this.inTodo = inTodo;
-        this.todoListId = todoListId;
+        this.todoList = todoList;
     }
 
     public Integer getId() {
@@ -80,11 +80,11 @@ public class Todo implements Serializable {
         this.inTodo = inTodo;
     }
 
-    public Integer getTodoListId() {
-        return todoListId;
+    public TodoList getTodoList() {
+        return todoList;
     }
 
-    public void setTodoListId(Integer todoListId) {
-        this.todoListId = todoListId;
+    public void setTodoList(TodoList todoList) {
+        this.todoList = todoList;
     }
 }

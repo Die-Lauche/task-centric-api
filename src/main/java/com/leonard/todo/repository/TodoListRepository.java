@@ -9,4 +9,6 @@ import java.util.List;
 public interface TodoListRepository extends CrudRepository<TodoList, Long> {
 
     List<TodoList> findByUser(User user);
+
+    List<TodoList> findAll();
 }
