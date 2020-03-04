@@ -2,7 +2,6 @@ package com.leonard.todo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -37,7 +36,7 @@ public class User implements Serializable {
     @Column(name = "create_time")
     private LocalDateTime localDateTime;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "user")
     private Set<TodoList> todoLists = new HashSet<>();
 
     public User() {

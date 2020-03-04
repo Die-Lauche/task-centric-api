@@ -21,11 +21,9 @@ public class TodoList implements Serializable {
     @OneToMany(mappedBy = "todoList")
     private Set<Todo> todos = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "todo_lists_id"))
-    private Set<User> user = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public TodoList() {
     }
@@ -43,11 +41,11 @@ public class TodoList implements Serializable {
         this.todos = todos;
     }
 
-    public Set<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Set<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
