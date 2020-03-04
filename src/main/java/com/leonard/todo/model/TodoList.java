@@ -21,9 +21,9 @@ public class TodoList implements Serializable {
     private Set<Todo> todos = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "user_has_todo_list",
+    @JoinTable(name = "user_has_todo_lists",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "todo_list_id"))
+            inverseJoinColumns = @JoinColumn(name = "todo_lists_id"))
     private Set<User> user = new HashSet<>();
 
     public TodoList() {

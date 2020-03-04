@@ -37,9 +37,11 @@ public class User implements Serializable {
     private LocalDateTime localDateTime;
 
     @ManyToMany
+    @JoinColumn(name = "irgendwaswasduwillst")
     private Set<TodoList> todoLists = new HashSet<>();
 
     public User() {
+
     }
 
     public User(Integer id, String username, String password, String email, LocalDateTime localDateTime) {
