@@ -2,6 +2,7 @@ package com.leonard.todo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "todo")
@@ -86,5 +87,18 @@ public class Todo implements Serializable {
 
     public void setTodoList(TodoList todoList) {
         this.todoList = todoList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo that = (Todo) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -3,6 +3,7 @@ package com.leonard.todo.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,7 @@ public class TodoList implements Serializable {
     private Set<Todo> todos = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "user_has_todo_lists",
+    @JoinTable(
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "todo_lists_id"))
     private Set<User> user = new HashSet<>();
@@ -64,5 +65,18 @@ public class TodoList implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoList that = (TodoList) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

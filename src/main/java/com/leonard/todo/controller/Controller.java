@@ -1,7 +1,8 @@
 package com.leonard.todo.controller;
 
+import com.leonard.todo.model.Todo;
 import com.leonard.todo.model.User;
-import com.leonard.todo.repository.UserRepository;
+import com.leonard.todo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +11,26 @@ import java.util.List;
 @RestController
 public class Controller {
 
+    private UserRepository userRepository;
+    private TodoListRepository todoListRepository;
+    private TodoRepository todoRepository;
+    private CityRepository cityRepository;
+    private GroupRepository groupRepository;
+
     @Autowired
-    UserRepository userRepository;
+    public Controller(UserRepository userRepository, TodoListRepository todoListRepository,
+                      TodoRepository todoRepository, CityRepository cityRepository, GroupRepository groupRepository) {
+        this.userRepository = userRepository;
+        this.todoListRepository = todoListRepository;
+        this.todoRepository = todoRepository;
+        this.cityRepository = cityRepository;
+        this.groupRepository = groupRepository;
+    }
+
 
     @GetMapping(value = "/all")
-    public List<User> getAll() {
-        return  userRepository.findAll();
+    public List<Todo> getAll() {
+        return  todoRepository.findAll();
     }
 
     @GetMapping(value = "/hi")

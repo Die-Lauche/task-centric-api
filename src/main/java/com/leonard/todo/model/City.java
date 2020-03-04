@@ -3,6 +3,7 @@ package com.leonard.todo.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class City implements Serializable {
     private String name;
 
     @Column(name = "plz")
-    private Integer plz;
+    private String plz;
 
     @OneToMany(mappedBy = "city")
     private Set<User> users = new HashSet<>();
@@ -27,7 +28,7 @@ public class City implements Serializable {
 
     }
 
-    public City(Integer id, String name, Integer plz) {
+    public City(Integer id, String name, String plz) {
         this.id = id;
         this.name = name;
         this.plz = plz;
@@ -49,11 +50,11 @@ public class City implements Serializable {
         this.name = name;
     }
 
-    public Integer getPlz() {
+    public String getPlz() {
         return plz;
     }
 
-    public void setPlz(Integer plz) {
+    public void setPlz(String plz) {
         this.plz = plz;
     }
 
@@ -63,5 +64,18 @@ public class City implements Serializable {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City that = (City) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
