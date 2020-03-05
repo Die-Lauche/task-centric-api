@@ -1,5 +1,7 @@
 package com.leonard.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,6 +20,7 @@ public class Group implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group")
     private Set<User> users = new HashSet<>();
 

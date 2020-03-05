@@ -1,5 +1,7 @@
 package com.leonard.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ public class City implements Serializable {
     @Column(name = "plz")
     private String plz;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private Set<User> users = new HashSet<>();
 

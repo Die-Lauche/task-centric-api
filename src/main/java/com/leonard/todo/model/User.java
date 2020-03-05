@@ -1,5 +1,7 @@
 package com.leonard.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -26,16 +28,15 @@ public class User implements Serializable {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "cities_id")
     private City city;
 
     @ManyToOne
-    @JoinColumn(name = "groups_id")
     private Group group;
 
     @Column(name = "create_time")
     private LocalDateTime localDateTime;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<TodoList> todoLists = new HashSet<>();
 

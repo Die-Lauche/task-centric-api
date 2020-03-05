@@ -1,5 +1,7 @@
 package com.leonard.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -25,7 +27,8 @@ public class Todo implements Serializable {
     @Column(name = "isInTodo")
     private Boolean inTodo;
 
-    @ManyToOne()
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "todo_list_id")
     private TodoList todoList;
 

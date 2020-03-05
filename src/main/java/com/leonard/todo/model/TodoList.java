@@ -1,5 +1,7 @@
 package com.leonard.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,11 +20,12 @@ public class TodoList implements Serializable {
     @Column(name = "title")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "todoList")
     private Set<Todo> todos = new HashSet<>();
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     public TodoList() {

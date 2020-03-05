@@ -6,9 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface TodoListRepository extends CrudRepository<TodoList, Long> {
+public interface TodoListRepository extends CrudRepository<TodoList, Integer> {
 
-    List<TodoList> findByUser(User user);
+    List<TodoList> findByUserId(Integer userId);
 
     List<TodoList> findAll();
 }
