@@ -42,20 +42,14 @@ public class Controller {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/one/todo")
-    public ResponseEntity<List<Todo>> getTodosForList(@RequestParam Integer listId) {
-        List<Todo> byListId = todoRepository.findByTodoListId(listId);
-        return new ResponseEntity<>(byListId, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/one/todoList")
-    public ResponseEntity<List<TodoList>> getTodoList(@RequestParam Integer uid) {
-        List<TodoList> byUid = todoListRepository.findByUserId(uid);
-        return new ResponseEntity<>(byUid, HttpStatus.OK);
-    }
-    @GetMapping(value = "/all/User")
-    public List<User> getAllUser() {
-        return  userRepository.findAll();
+    @PostMapping(value = "/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        Optional<User> byUsername = userRepository.findByUsername(user.getUsername());
+        if (byUsername.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.SEE_OTHER);
+        }
+        userRepository.save(user);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     @GetMapping(value = "/hi")
@@ -63,9 +57,4 @@ public class Controller {
         return "Hallo";
     }
 
-    @PostMapping(value = "/load")
-    public List<User> persist(@RequestBody final User user) {
-        userRepository.save(user);
-        return userRepository.findAll();
-    }
 }
