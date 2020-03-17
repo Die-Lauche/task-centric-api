@@ -42,6 +42,19 @@ public class Controller {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping(value = "checkLogin2")
+    public ResponseEntity<User> getUser(@RequestBody String username, String password){
+        Optional<User> byUsername = userRepository.findByUsername(username);
+        if (byUsername.isPresent()) {
+            User user = byUsername.get();
+            if(user.getPassword().equals(password)){
+                return new ResponseEntity<User>(user, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping(value = "/register")
     public ResponseEntity<User> register(@RequestBody User user) {
         Optional<User> byUsername = userRepository.findByUsername(user.getUsername());
