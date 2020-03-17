@@ -67,7 +67,7 @@ public class Controller {
 
     @GetMapping(value = "/hi")
     public String getError() {
-        return "Halo";
+        return "Hallo";
     }
 
 }
