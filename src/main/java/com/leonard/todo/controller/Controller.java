@@ -31,24 +31,12 @@ public class Controller {
         this.groupRepository = groupRepository;
     }
 
-    @PostMapping(value = "/checkLogin")
-    public ResponseEntity<LoginResponse> getUserId(@RequestBody Map<String, String> loginBody) {
-        String username = loginBody.get("username");
-        Optional<User> byUsername = userRepository.findByUsername(username);
+    @PostMapping(value = "checkLogin")
+    public ResponseEntity<User> getUser(@RequestBody LoginResponse loginResponse){
+        Optional<User> byUsername = userRepository.findByUsername(loginResponse.getUsername());
         if (byUsername.isPresent()) {
             User user = byUsername.get();
-            LoginResponse loginResponse = new LoginResponse(user.getId(), user.getPassword());
-            return new ResponseEntity<LoginResponse>(loginResponse, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping(value = "checkLogin2")
-    public ResponseEntity<User> getUser(@RequestBody String username, String password){
-        Optional<User> byUsername = userRepository.findByUsername(username);
-        if (byUsername.isPresent()) {
-            User user = byUsername.get();
-            if(user.getPassword().equals(password)){
+            if(user.getPassword().equals(loginResponse.getPassword())){
                 return new ResponseEntity<User>(user, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -57,12 +45,8 @@ public class Controller {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<User> register(@RequestBody User user, City city) {
+    public ResponseEntity<User> register(@RequestBody User user) {
         Optional<User> byUsername = userRepository.findByUsername(user.getUsername());
-        Optional<City> byName = cityRepository.findByName(city.getName());
-        if (!byName.isPresent()) {
-            cityRepository.save(city);
-        }
         if (byUsername.isPresent()) {
             return new ResponseEntity<>(HttpStatus.SEE_OTHER);
         }
@@ -82,6 +66,12 @@ public class Controller {
     @GetMapping(value = "/hi")
     public String getError() {
         return "Hallo";
+    }
+
+    @PostMapping(value = "/addTodo")
+    public ResponseEntity addTodo(@RequestBody Todo todo) {
+        todoRepository.save(todo);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

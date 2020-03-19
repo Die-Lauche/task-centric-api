@@ -2,20 +2,21 @@ package com.leonard.todo.model;
 
 public class LoginResponse {
 
-    private int id;
+    private String username;
     private String password;
 
-    public LoginResponse(int id, String password) {
-        this.id = id;
+    public LoginResponse(String username, String password) {
+
+        this.username = username;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

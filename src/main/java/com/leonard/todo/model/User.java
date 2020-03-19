@@ -32,6 +32,7 @@ public class User implements Serializable {
     private City city;
 
     @ManyToOne
+    @JoinColumn(name = "group")
     private Group group;
 
     @Column(name = "create_time")
