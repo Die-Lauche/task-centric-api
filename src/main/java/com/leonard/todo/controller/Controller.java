@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class Controller {
 
@@ -56,13 +57,26 @@ public class Controller {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
+    public ResponseEntity<User> register(@RequestBody User user, City city) {
         Optional<User> byUsername = userRepository.findByUsername(user.getUsername());
+        Optional<City> byName = cityRepository.findByName(city.getName());
+        if (!byName.isPresent()) {
+            cityRepository.save(city);
+        }
         if (byUsername.isPresent()) {
             return new ResponseEntity<>(HttpStatus.SEE_OTHER);
         }
         userRepository.save(user);
         return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user")
+    public ResponseEntity<User> getUser(@RequestParam Integer uid) {
+        Optional<User> byId = userRepository.findById(uid);
+        if (byId.isPresent()) {
+            return new ResponseEntity<User>(byId.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<User>(HttpStatus.BAD_GATEWAY);
     }
 
     @GetMapping(value = "/hi")

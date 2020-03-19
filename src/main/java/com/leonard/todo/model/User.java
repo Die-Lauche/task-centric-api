@@ -28,6 +28,7 @@ public class User implements Serializable {
     private String email;
 
     @ManyToOne
+    @JoinColumn(name = "city")
     private City city;
 
     @ManyToOne
