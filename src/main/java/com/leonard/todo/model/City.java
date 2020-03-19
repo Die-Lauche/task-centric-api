@@ -23,9 +23,9 @@ public class City implements Serializable {
     @Column(name = "plz")
     private String plz;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany(mappedBy = "city")
-    private Set<User> users = new HashSet<>();
+    private Set<User> users = new HashSet<>();*/
 
     public City() {
 
@@ -61,13 +61,13 @@ public class City implements Serializable {
         this.plz = plz;
     }
 
-    public Set<User> getUsers() {
+    /*public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

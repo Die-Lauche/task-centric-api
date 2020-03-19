@@ -27,9 +27,9 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "city")
-    private City city;
+    private City city;*/
 
     @ManyToOne
     @JoinColumn(name = "userGroup")
@@ -86,13 +86,13 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public City getCity() {
+    /*public City getCity() {
         return city;
     }
 
     public void setCity(City city) {
         this.city = city;
-    }
+    }*/
 
     public Group getGroup() {
         return group;
