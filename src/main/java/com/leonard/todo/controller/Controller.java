@@ -31,7 +31,7 @@ public class Controller {
         this.groupRepository = groupRepository;
     }
 
-    @PostMapping(value = "checkLogin")
+    @PostMapping(value = "/checkLogin")
     public ResponseEntity<User> getUser(@RequestBody LoginResponse loginResponse){
         Optional<User> byUsername = userRepository.findByUsername(loginResponse.getUsername());
         if (byUsername.isPresent()) {
