@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -68,12 +69,17 @@ public class Controller {
         return "Hallo";
     }
 
-    /*@PostMapping(value = "/getTodoList")
-    public ResponseEntity getTodoList(@RequestBody User user) {
+    //@PostMapping(value = "/addTodoList")
 
+    @GetMapping(value = "/getTodoList")
+    public ResponseEntity getTodoList(@RequestParam Long uid) {
+        Optional<User> byId = userRepository.findById(uid);
+        User userById = byId.get();
+        Set<TodoList> todoLists = userById.getTodoLists();
+        return new ResponseEntity(todoLists,HttpStatus.OK);
     }
 
-    @PostMapping(value = "/getTodo")
+    /*@PostMapping(value = "/getTodo")
     public ResponseEntity getTodo(@RequestBody TodoList todoList) {
 
     }*/
