@@ -18,7 +18,7 @@ public class TodoList implements Serializable {
     private Integer id;
 
     @Column(name = "title")
-    private String name;
+    private String title;
 
     @JsonIgnore
     @OneToMany(mappedBy = "todoList")
@@ -31,9 +31,9 @@ public class TodoList implements Serializable {
     public TodoList() {
     }
 
-    public TodoList(Integer id, String name) {
+    public TodoList(Integer id, String title) {
         this.id = id;
-        this.name = name;
+        this.title = title;
     }
 
     public Set<Todo> getTodos() {
@@ -60,12 +60,12 @@ public class TodoList implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String title) {
+        this.title = title;
     }
 
     @Override
