@@ -80,7 +80,7 @@ public class Controller {
     }
 
     @GetMapping(value = "/todosForList")
-    public ResponseEntity getTodo(@RequestBody Integer listId) {
+    public ResponseEntity getTodo(@RequestParam Integer listId) {
         Optional<TodoList> byId = todoListRepository.findById(listId);
         TodoList todoListById = byId.get();
         Set<Todo> todos = todoListById.getTodos();
