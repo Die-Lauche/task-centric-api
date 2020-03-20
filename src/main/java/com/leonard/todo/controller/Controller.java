@@ -80,17 +80,24 @@ public class Controller {
     }
 
     @GetMapping(value = "/todosForList")
-    public ResponseEntity getTodo(@RequestParam Integer listId) {
+    public ResponseEntity getTodoForList(@RequestParam Integer listId) {
         Optional<TodoList> byId = todoListRepository.findById(listId);
         TodoList todoListById = byId.get();
         Set<Todo> todos = todoListById.getTodos();
         return new ResponseEntity(todos,HttpStatus.OK);
     }
 
+    @GetMapping(value = "/getTodo")
+    public ResponseEntity getTodo(@RequestParam Integer tid) {
+        Optional<Todo> byId = todoRepository.findById(tid);
+        Todo todoById = byId.get();
+        return new ResponseEntity(todoById,HttpStatus.OK);
+    }
+
     @PostMapping(value = "/addTodo")
     public ResponseEntity addTodo(@RequestBody Todo todo) {
         todoRepository.save(todo);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(todo, HttpStatus.OK);
     }
 
     @PostMapping(value = "/updateTodo")
