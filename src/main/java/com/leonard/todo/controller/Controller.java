@@ -72,7 +72,7 @@ public class Controller {
     //@PostMapping(value = "/addTodoList")
 
     @GetMapping(value = "/getTodoList")
-    public ResponseEntity getTodoList(@RequestParam Long uid) {
+    public ResponseEntity getTodoList(@RequestParam Integer uid) {
         Optional<User> byId = userRepository.findById(uid);
         User userById = byId.get();
         Set<TodoList> todoLists = userById.getTodoLists();
