@@ -19,13 +19,13 @@ public class Todo implements Serializable {
     private String content;
 
     @Column(name = "isCompleted")
-    private Boolean completed;
+    private Boolean isCompleted;
 
     @Column(name = "isInProgress")
-    private Boolean inProgress;
+    private Boolean isInProgress;
 
     @Column(name = "isInTodo")
-    private Boolean inTodo;
+    private Boolean isInTodo;
 
     @JsonIgnore
     @ManyToOne
@@ -38,9 +38,9 @@ public class Todo implements Serializable {
     public Todo(Integer id, String content, Boolean completed, Boolean inProgress, Boolean inTodo, TodoList todoList) {
         this.id = id;
         this.content = content;
-        this.completed = completed;
-        this.inProgress = inProgress;
-        this.inTodo = inTodo;
+        this.isCompleted = completed;
+        this.isInProgress = inProgress;
+        this.isInTodo = inTodo;
         this.todoList = todoList;
     }
 
@@ -60,28 +60,28 @@ public class Todo implements Serializable {
         this.content = content;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public Boolean getIsCompleted() {
+        return isCompleted;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setIsCompleted(Boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
-    public Boolean getInProgress() {
-        return inProgress;
+    public Boolean getIsInProgress() {
+        return isInProgress;
     }
 
-    public void setInProgress(Boolean inProgress) {
-        this.inProgress = inProgress;
+    public void setIsInProgress(Boolean isInProgress) {
+        this.isInProgress = isInProgress;
     }
 
-    public Boolean getInTodo() {
-        return inTodo;
+    public Boolean getIsInTodo() {
+        return isInTodo;
     }
 
-    public void setInTodo(Boolean inTodo) {
-        this.inTodo = inTodo;
+    public void setIsInTodo(Boolean isInTodo) {
+        this.isInTodo = isInTodo;
     }
 
     public TodoList getTodoList() {

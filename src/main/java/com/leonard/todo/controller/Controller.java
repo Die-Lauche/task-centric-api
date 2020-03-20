@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -106,9 +104,9 @@ public class Controller {
         if (byId.isPresent()){
             Todo todoById = byId.get();
             todoById.setContent(todo.getContent());
-            todoById.setCompleted(todo.getCompleted());
-            todoById.setInProgress(todo.getInProgress());
-            todoById.setInTodo(todo.getInTodo());
+            todoById.setIsCompleted(todo.getIsCompleted());
+            todoById.setIsInProgress(todo.getIsInProgress());
+            todoById.setIsInTodo(todo.getIsInTodo());
             todoRepository.save(todoById);
             return new ResponseEntity(HttpStatus.OK);
 
