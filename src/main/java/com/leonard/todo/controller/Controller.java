@@ -68,10 +68,41 @@ public class Controller {
         return "Hallo";
     }
 
+    /*@PostMapping(value = "/getTodoList")
+    public ResponseEntity getTodoList(@RequestBody User user) {
+
+    }
+
+    @PostMapping(value = "/getTodo")
+    public ResponseEntity getTodo(@RequestBody TodoList todoList) {
+
+    }*/
+
     @PostMapping(value = "/addTodo")
     public ResponseEntity addTodo(@RequestBody Todo todo) {
         todoRepository.save(todo);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PostMapping(value = "/updateTodo")
+    public ResponseEntity updateTodo(@RequestBody Todo todo) {
+        Optional<Todo> byId = todoRepository.findById(todo.getId());
+        if (byId.isPresent()){
+            Todo todoById = byId.get();
+            todoById.setContent(todo.getContent());
+            todoById.setCompleted(todo.getCompleted());
+            todoById.setInProgress(todo.getInProgress());
+            todoById.setInTodo(todo.getInTodo());
+            todoRepository.save(todoById);
+            return new ResponseEntity(HttpStatus.OK);
+
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = "/deleteTodo")
+    public ResponseEntity deleteTodo(@RequestParam Integer tid) {
+        todoRepository.deleteById(tid);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
