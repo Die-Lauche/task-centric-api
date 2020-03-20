@@ -79,7 +79,7 @@ public class Controller {
         return new ResponseEntity(todoLists,HttpStatus.OK);
     }
 
-    @PostMapping(value = "/todosForList")
+    @GetMapping(value = "/todosForList")
     public ResponseEntity getTodo(@RequestBody Integer listId) {
         Optional<TodoList> byId = todoListRepository.findById(listId);
         TodoList todoListById = byId.get();
