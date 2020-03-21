@@ -16,11 +16,4 @@ public class ToDoApplication {
 		SpringApplication.run(ToDoApplication.class, args);
 	}
 
-	public CommandLineRunner command(UserRepository userRepository) {
-		return (args -> {
-			for (User user : userRepository.findAll()) {
-				System.out.println(user);
-			}
-		});
-	}
 }
