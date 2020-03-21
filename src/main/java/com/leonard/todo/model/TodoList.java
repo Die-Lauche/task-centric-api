@@ -24,7 +24,6 @@ public class TodoList implements Serializable {
     @OneToMany(mappedBy = "todoList")
     private Set<Todo> todos = new HashSet<>();
 
-    @JsonIgnore
     @ManyToOne
     private User user;
 

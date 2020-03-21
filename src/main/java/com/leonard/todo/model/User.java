@@ -42,12 +42,11 @@ public class User implements Serializable {
 
     }
 
-    public User(Integer id, String username, String password, String email, LocalDateTime localDateTime) {
+    public User(Integer id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.localDateTime = localDateTime;
     }
 
     public Integer getId() {
@@ -81,14 +80,6 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /*public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }*/
 
     public Group getGroup() {
         return group;

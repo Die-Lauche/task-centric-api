@@ -51,6 +51,7 @@ public class Controller {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    //This has to go away
     @GetMapping(value = "/user")
     public ResponseEntity<User> getUser(@RequestParam Integer uid) {
         Optional<User> byId = userRepository.findById(uid);
@@ -64,6 +65,8 @@ public class Controller {
     public String getError() {
         return "Hallo";
     }
+
+    //TodoLists
 
     @PostMapping(value = "/addTodoList")
     public ResponseEntity addTodoList(@RequestBody TodoList todoList) {
@@ -86,6 +89,28 @@ public class Controller {
         Set<Todo> todos = todoListById.getTodos();
         return new ResponseEntity(todos,HttpStatus.OK);
     }
+
+    @PostMapping(value = "/updateTodoList")
+    public ResponseEntity updateTodoList(@RequestBody TodoList todoList) {
+        Optional<TodoList> byId = todoListRepository.findById(todoList.getId());
+        if (byId.isPresent()){
+            TodoList todoById = byId.get();
+            todoById.setName(todoList.getTitle());
+            todoById.setUser(todoList.getUser());
+            todoListRepository.save(todoById);
+            return new ResponseEntity(HttpStatus.OK);
+
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = "/deleteTodoList")
+    public ResponseEntity deleteTodoList(@RequestParam Integer listid) {
+        todoListRepository.deleteById(listid);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    //Todos
 
     @GetMapping(value = "/getTodo")
     public ResponseEntity getTodo(@RequestParam Integer tid) {
