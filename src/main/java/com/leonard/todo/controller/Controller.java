@@ -90,7 +90,7 @@ public class Controller {
         return new ResponseEntity(todos,HttpStatus.OK);
     }
 
-    @PostMapping(value = "/updateTodoList")
+    @PatchMapping(value = "/updateTodoList")
     public ResponseEntity updateTodoList(@RequestBody TodoList todoList) {
         Optional<TodoList> byId = todoListRepository.findById(todoList.getId());
         if (byId.isPresent()){
