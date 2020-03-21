@@ -17,16 +17,14 @@ public class Controller {
     private UserRepository userRepository;
     private TodoListRepository todoListRepository;
     private TodoRepository todoRepository;
-    private CityRepository cityRepository;
     private GroupRepository groupRepository;
 
     @Autowired
     public Controller(UserRepository userRepository, TodoListRepository todoListRepository,
-                      TodoRepository todoRepository, CityRepository cityRepository, GroupRepository groupRepository) {
+                      TodoRepository todoRepository, GroupRepository groupRepository) {
         this.userRepository = userRepository;
         this.todoListRepository = todoListRepository;
         this.todoRepository = todoRepository;
-        this.cityRepository = cityRepository;
         this.groupRepository = groupRepository;
     }
 
@@ -67,7 +65,11 @@ public class Controller {
         return "Hallo";
     }
 
-    //@PostMapping(value = "/addTodoList")
+    @PostMapping(value = "/addTodoList")
+    public ResponseEntity addTodoList(@RequestBody TodoList todoList) {
+        todoListRepository.save(todoList);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
     @GetMapping(value = "/getTodoList")
     public ResponseEntity getTodoList(@RequestParam Integer uid) {
@@ -78,7 +80,7 @@ public class Controller {
     }
 
     @GetMapping(value = "/todosForList")
-    public ResponseEntity getTodoForList(@RequestParam Integer listId) {
+    public ResponseEntity getTodosForList(@RequestParam Integer listId) {
         Optional<TodoList> byId = todoListRepository.findById(listId);
         TodoList todoListById = byId.get();
         Set<Todo> todos = todoListById.getTodos();

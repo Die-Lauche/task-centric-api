@@ -27,10 +27,6 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    /*@ManyToOne
-    @JoinColumn(name = "city")
-    private City city;*/
-
     @ManyToOne
     @JoinColumn(name = "userGroup")
     private Group group;

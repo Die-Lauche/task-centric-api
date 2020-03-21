@@ -27,7 +27,6 @@ public class Todo implements Serializable {
     @Column(name = "isInTodo")
     private Boolean isInTodo;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "todo_list_id")
     private TodoList todoList;
