@@ -125,7 +125,7 @@ public class Controller {
         return new ResponseEntity(todo, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/updateTodo")
+    @PatchMapping(value = "/updateTodo")
     public ResponseEntity updateTodo(@RequestBody Todo todo) {
         Optional<Todo> byId = todoRepository.findById(todo.getId());
         if (byId.isPresent()){
