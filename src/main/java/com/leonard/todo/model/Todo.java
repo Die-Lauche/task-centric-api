@@ -29,7 +29,10 @@ public class Todo implements Serializable {
     private Boolean isInTodo;
 
     @Column(name = "create_time")
-    private java.util.Date Date;
+    private Date Date;
+
+    @Column(name = "last_update_time")
+    private Date updateDate;
 
     @ManyToOne
     @JoinColumn(name = "todo_list_id")
@@ -87,12 +90,20 @@ public class Todo implements Serializable {
         this.isInTodo = isInTodo;
     }
 
-    public java.util.Date getDate() {
+    public Date getDate() {
         return Date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(Date date) {
         Date = date;
+    }
+
+    public java.util.Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(java.util.Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public TodoList getTodoList() {

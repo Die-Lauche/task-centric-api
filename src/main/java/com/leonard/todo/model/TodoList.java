@@ -22,7 +22,7 @@ public class TodoList implements Serializable {
     private String title;
 
     @Column(name = "create_time")
-    private java.util.Date Date;
+    private Date Date;
 
     @JsonIgnore
     @OneToMany(mappedBy = "todoList")
@@ -67,11 +67,11 @@ public class TodoList implements Serializable {
         return title;
     }
 
-    public java.util.Date getDate() {
+    public Date getDate() {
         return Date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(Date date) {
         Date = date;
     }
 

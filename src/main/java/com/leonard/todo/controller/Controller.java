@@ -128,6 +128,7 @@ public class Controller {
     @PostMapping(value = "/addTodo")
     public ResponseEntity addTodo(@RequestBody Todo todo) {
         todo.setDate(new Date());
+        todo.setUpdateDate(new Date());
         todoRepository.save(todo);
         return new ResponseEntity(todo, HttpStatus.OK);
     }
@@ -141,6 +142,7 @@ public class Controller {
             todoById.setIsCompleted(todo.getIsCompleted());
             todoById.setIsInProgress(todo.getIsInProgress());
             todoById.setIsInTodo(todo.getIsInTodo());
+            todo.setUpdateDate(new Date());
             todoRepository.save(todoById);
             return new ResponseEntity(HttpStatus.OK);
 
