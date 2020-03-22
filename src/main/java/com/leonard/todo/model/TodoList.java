@@ -31,6 +31,9 @@ public class TodoList implements Serializable {
     @ManyToOne
     private User user;
 
+    @ManyToMany
+    private Set<Category> categories = new HashSet<>();
+
     public TodoList() {
     }
 
