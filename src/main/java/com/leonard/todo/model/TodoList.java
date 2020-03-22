@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -19,6 +20,9 @@ public class TodoList implements Serializable {
 
     @Column(name = "title")
     private String title;
+
+    @Column(name = "create_time")
+    private java.util.Date Date;
 
     @JsonIgnore
     @OneToMany(mappedBy = "todoList")
@@ -61,6 +65,14 @@ public class TodoList implements Serializable {
 
     public String getTitle() {
         return title;
+    }
+
+    public java.util.Date getDate() {
+        return Date;
+    }
+
+    public void setDate(java.util.Date date) {
+        Date = date;
     }
 
     public void setName(String title) {

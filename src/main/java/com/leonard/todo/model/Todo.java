@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +27,9 @@ public class Todo implements Serializable {
 
     @Column(name = "isInTodo")
     private Boolean isInTodo;
+
+    @Column(name = "create_time")
+    private java.util.Date Date;
 
     @ManyToOne
     @JoinColumn(name = "todo_list_id")
@@ -81,6 +85,14 @@ public class Todo implements Serializable {
 
     public void setIsInTodo(Boolean isInTodo) {
         this.isInTodo = isInTodo;
+    }
+
+    public java.util.Date getDate() {
+        return Date;
+    }
+
+    public void setDate(java.util.Date date) {
+        Date = date;
     }
 
     public TodoList getTodoList() {

@@ -75,6 +75,7 @@ public class Controller {
 
     @PostMapping(value = "/addTodoList")
     public ResponseEntity addTodoList(@RequestBody TodoList todoList) {
+        todoList.setDate(new Date());
         todoListRepository.save(todoList);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -126,6 +127,7 @@ public class Controller {
 
     @PostMapping(value = "/addTodo")
     public ResponseEntity addTodo(@RequestBody Todo todo) {
+        todo.setDate(new Date());
         todoRepository.save(todo);
         return new ResponseEntity(todo, HttpStatus.OK);
     }

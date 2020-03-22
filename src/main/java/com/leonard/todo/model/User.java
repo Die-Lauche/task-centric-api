@@ -1,6 +1,7 @@
 package com.leonard.todo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leonard.todo.repository.GroupRepository;
 
 import javax.persistence.*;
 import java.io.Serializable;

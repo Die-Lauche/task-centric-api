@@ -1,6 +1,7 @@
 package com.leonard.todo.repository;
 
 import com.leonard.todo.model.Group;
+import com.leonard.todo.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
