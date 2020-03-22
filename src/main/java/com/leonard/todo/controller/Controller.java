@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,14 +20,16 @@ public class Controller {
     private TodoListRepository todoListRepository;
     private TodoRepository todoRepository;
     private GroupRepository groupRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     public Controller(UserRepository userRepository, TodoListRepository todoListRepository,
-                      TodoRepository todoRepository, GroupRepository groupRepository) {
+                      TodoRepository todoRepository, GroupRepository groupRepository, CategoryRepository categoryRepository) {
         this.userRepository = userRepository;
         this.todoListRepository = todoListRepository;
         this.todoRepository = todoRepository;
         this.groupRepository = groupRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @PostMapping(value = "/checkLogin")
@@ -72,6 +75,12 @@ public class Controller {
     }
 
     //TodoLists
+
+    @GetMapping(value = "/getCategories")
+    public ResponseEntity getCategory() {
+        List<Category> categories = categoryRepository.findAll();
+        return new ResponseEntity(categories, HttpStatus.OK);
+    }
 
     @PostMapping(value = "/addTodoList")
     public ResponseEntity addTodoList(@RequestBody TodoList todoList) {
