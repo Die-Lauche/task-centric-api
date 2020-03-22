@@ -18,8 +18,8 @@ public class Category  implements Serializable {
     private String title;
 
     @ManyToMany
-    @JoinTable(name = "todoList_categories",
-            joinColumns = @JoinColumn(name = "todolist_id"),
+    @JoinTable(name = "todo_list_categories",
+            joinColumns = @JoinColumn(name = "todo_list_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id"))
     private Set<TodoList> todoLists = new HashSet<>();
 
