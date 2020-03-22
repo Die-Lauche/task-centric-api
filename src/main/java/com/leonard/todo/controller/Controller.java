@@ -77,7 +77,7 @@ public class Controller {
     public ResponseEntity addTodoList(@RequestBody TodoList todoList) {
         todoList.setDate(new Date());
         todoListRepository.save(todoList);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(todoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "/getTodoList")
