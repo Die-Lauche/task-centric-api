@@ -142,7 +142,7 @@ public class Controller {
             todoById.setIsCompleted(todo.getIsCompleted());
             todoById.setIsInProgress(todo.getIsInProgress());
             todoById.setIsInTodo(todo.getIsInTodo());
-            todo.setUpdateDate(new Date());
+            todoById.setUpdateDate(new Date());
             todoRepository.save(todoById);
             return new ResponseEntity(HttpStatus.OK);
 
