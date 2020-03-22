@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
 
@@ -47,6 +48,10 @@ public class Controller {
         if (byUsername.isPresent()) {
             return new ResponseEntity<>(HttpStatus.SEE_OTHER);
         }
+        Optional<Group> normalGroup = groupRepository.findById(2);
+        Group group = normalGroup.get();
+        user.setGroup(group);
+        user.setDate(new Date());
         userRepository.save(user);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class User implements Serializable {
     private Group group;
 
     @Column(name = "create_time")
-    private LocalDateTime localDateTime;
+    private Date Date;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -89,12 +90,12 @@ public class User implements Serializable {
         this.group = group;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public java.util.Date getDate() {
+        return Date;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setDate(java.util.Date date) {
+        Date = date;
     }
 
     public Set<TodoList> getTodoLists() {
